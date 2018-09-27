@@ -150,6 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
+        //laravel\Tinker\TinkerServiceProvider::class,
 
         /*
          * Application Service Providers...
