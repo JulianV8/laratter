@@ -20,4 +20,9 @@ Route::post('/messages/create', 'MessegesController@create')
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
+
+Route::get('/{username}/follows', 'UserController@follows');
+Route::post('/{username}/follow', 'UserController@follow');
+Route::get('/{username}', 'UserController@show');
+

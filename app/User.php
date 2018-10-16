@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function messages(){
+        return $this->hasMany(Messege::class)->orderBy('created_at', 'desc');
+    }
+    public function follows(){
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'followed_id');
+    }
+    public function followers(){
+        return $this->belongsToMany(User::class, 'followers', 'followed_id', 'user_id');
+    }
 }

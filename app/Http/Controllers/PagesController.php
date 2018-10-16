@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PagesController extends Controller
 {
     public function home(){
-      $messeges = Messege::paginate(10);
+      $messeges = Messege::latest()->paginate(10);
 
       return view('welcome', [
         'messeges' => $messeges,
