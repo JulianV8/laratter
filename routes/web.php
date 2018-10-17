@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/', 'PagesController@home');
 
@@ -18,11 +19,11 @@ Route::get('/messege/{messege}', 'MessegesController@show');
 Route::post('/messages/create', 'MessegesController@create')
 ->middleware('auth');
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index');
 
 Route::get('/{username}/follows', 'UserController@follows');
+Route::get('/{username}/followers', 'UserController@followers');
 Route::post('/{username}/follow', 'UserController@follow');
+Route::post('/{username}/unfollow', 'UserController@unfollow');
 Route::get('/{username}', 'UserController@show');
 
