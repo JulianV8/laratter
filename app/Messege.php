@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Messege extends Model
 {
@@ -11,5 +12,11 @@ class Messege extends Model
     public function user(){
 
         return $this->belongsTo(User::class);
+    }
+    public function getImageAttribute($image){
+        if(!$image || starts_with($image, 'http')){
+            return $image;
+        }
+         return Storage::disk('public')->url($image);
     }
 }

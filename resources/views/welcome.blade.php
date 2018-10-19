@@ -14,7 +14,7 @@
 </div>
 
 <div class="row">
-  <form action="/messages/create" method="post">
+  <form action="/messages/create" method="post" enctype="multipart/form-data">
     <div class="form-group">
     {{ csrf_field() }}
       <input type="text" class="form-control @if ($errors->has('message')) is-invalid @endif" name="message" class="form-control" placeholder="En que piensas?">
@@ -23,6 +23,7 @@
         <div class="invalid-feedback">{{ $error }}</div>
         @endforeach
       @endif
+      <input type="file" class="form-control-file" name="image">
     </div>
   </form>
 </div>
@@ -38,7 +39,7 @@
   @if(count($messeges))
     <div class="mt-2 mx-auto">
     {{ $messeges }}
-    </div
+    </div>
   @endif
 </div>
 @endsection

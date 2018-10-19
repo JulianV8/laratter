@@ -16,14 +16,18 @@ Route::get('/', 'PagesController@home');
 
 Route::get('/messege/{messege}', 'MessegesController@show');
 
-Route::post('/messages/create', 'MessegesController@create')
-->middleware('auth');
-
 Route::get('/home', 'HomeController@index');
+
+Route::group(['middleware' => 'auth'], function (){
+    Route::post('/{username}/dms', 'UserController@sendPrivateMessage');
+    Route::get('/conversations/{conversation}', 'UserController@showConversation');
+    Route::post('/messages/create', 'MessegesController@create');
+
+    Route::post('/{username}/follow', 'UserController@follow');
+    Route::post('/{username}/unfollow', 'UserController@unfollow');
+});
 
 Route::get('/{username}/follows', 'UserController@follows');
 Route::get('/{username}/followers', 'UserController@followers');
-Route::post('/{username}/follow', 'UserController@follow');
-Route::post('/{username}/unfollow', 'UserController@unfollow');
 Route::get('/{username}', 'UserController@show');
 
