@@ -28,4 +28,14 @@ class MessegesController extends Controller
       ]);
         return redirect('/messege/'.$message->id);
   }
+  public function search(Request $request){
+      $query = $request->input('query');
+
+      $messages = Messege::search($query)->get();
+      $messages->load('user');
+
+      return view('messages.index', [
+          'messages' => $messages,
+      ]);
+  }
 }
