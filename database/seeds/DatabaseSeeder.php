@@ -15,13 +15,19 @@ class DatabaseSeeder extends Seeder
         $users = factory(App\User::class, 50)->create();
 
         $users->each(function (App\User $user) use ($users) {
-            factory(App\Messege::class)
+            $messages = factory(App\Messege::class)
                 ->times(20)
                 ->create([
                     'user_id' => $user->id,
                 ]);
-            $user->follows()->sync(
-                $users->random(10)
+            $messages->each(function (App\Messege $messege) use ($users){
+                factory(App\Response::class, random_int(1, 10))->create([
+                    'message_id' => $messege->id,
+                    'user_id' => $users->random(1)->first()->id,
+                ]);
+            });
+                $user->follows()->sync(
+                    $users->random(10)
             );
         });
     }

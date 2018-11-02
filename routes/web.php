@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('/{username}/unfollow', 'UserController@unfollow');
 });
 
+Route::get('/api/messages/{messege}/responses', 'MessegesController@responses');
+
 Route::get('/{username}/follows', 'UserController@follows');
 Route::get('/{username}/followers', 'UserController@followers');
 Route::get('/{username}', 'UserController@show');
