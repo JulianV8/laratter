@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth'], function (){
 
     Route::post('/{username}/follow', 'UserController@follow');
     Route::post('/{username}/unfollow', 'UserController@unfollow');
+
+    Route::get('/api/notifications', 'UserController@notifications');
 });
 
 Route::get('/api/messages/{messege}/responses', 'MessegesController@responses');

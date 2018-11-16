@@ -10,7 +10,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
         "laravel/scout": "^6.0",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "pusher/pusher-php-server": "^3.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
@@ -50,6 +51,10 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
+        ],
+        "compile": [
+            "php artisan migrate --force",
+            "php artisan storage:link"
         ]
     },
     "config": {
